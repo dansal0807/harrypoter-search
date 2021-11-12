@@ -5,12 +5,12 @@
 
 {% from "_formhelpers.html" import render_field %}
 <form action="" method="post" novalidate>
-  <dl> {{ render_field(form.select) }}
+  <dl> {{ render_field(form.haystack) }}
     <p>
-    {{ render_field(form.search) }}
+    {{ render_field(form.needle) }}
   </p>
     </dl>
-  <p>   <input type="submit" value="Search">      
+  <p>   <input type="submit" value="busca">      
 </p></form>
 </doctype>
 {% endblock %}

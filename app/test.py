@@ -12,7 +12,6 @@ for data in datas:
     house = data['house']
     actor = data['actor']
 
-    if name == "Harry Potter":
-        print(name, gender, house, actor)
+    print(name, gender, house, actor)
 
 

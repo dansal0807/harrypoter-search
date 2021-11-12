@@ -1,16 +1,18 @@
 from flask import render_template, redirect, flash, url_for, request
 from app import app, db
+from app import results
 from app.forms import LoginForm, FlaskForm, BuscaForms
 from flask_login import current_user, login_user, login_required, logout_user
-from app.models import User, Busca
-from app.forms import RegistrationForm
+from app.models import User
+from app.forms import RegistrationForm, LoginForm
 from app.results import Results
 import requests 
 import json
+import csv
 
 #renderização das rotas do formulário:
 @app.route('/')
-@app.route('/index')
+@app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
     form = LoginForm()
@@ -55,35 +57,36 @@ def register():
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
     buscas = [
-        {'usuário': user, 'busca': 'Test post #1'},
-        {'usuário': user, 'busca': 'Test post #2'}
+        {'usuário': user, 'busca': results}
     ]    
     return render_template('user.html', user=user, buscas=buscas)
 
 @app.route('/busca', methods=['GET', 'POST'])
 def busca():
-    session = requests.Session()
-    url = "http://hp-api.herokuapp.com/api/characters"
-    r = requests.get(url)
-    data = json.loads(r.text)
-    
     search = BuscaForms(request.form)
     if request.method == 'POST':
         return search_results(search)
     return render_template('busca.html', form=search)
 
+results = []
 @app.route('/resultados')
-def search_results(search):
+def search_results(data):
     results = []
-    search_string = search.data['search']
-    if search.data['search'] == '':
-        qry = db_session.query(Busca)
-        results = qry.all()
-    if not results:
-        flash('Nenhum resultado encontrado!')
-        return redirect('/busca')
-    else:
-        table = Results(results)
-        table.border = True
-        return render_template('resultados.html', table=table)
+    needle = data.data['needle']
+    haystack = data.data['haystack']
+
+    session = requests.Session()
+    url = "http://hp-api.herokuapp.com/api/characters"
+    r = requests.get(url)
+    personagens = json.loads(r.text)
+
+    for personagem in personagens:
+        if personagem['name'] == needle:
+            results.append(personagem)
+            break
+        else:
+            continue
+    return render_template('resultados.html', results=results)
+
+
 

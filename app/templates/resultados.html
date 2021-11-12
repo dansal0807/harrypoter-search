@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {{ table }}
+
+    {{ results }}
+ 
+<form method="get" action="file.doc">
+    <button type="submit">Download CSV </button>
+</form>
+
 {% endblock %}
