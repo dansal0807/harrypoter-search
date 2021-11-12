@@ -1,9 +1,10 @@
-from flask import render_template, redirect, flash, url_for
+from flask import render_template, redirect, flash, url_for, request
 from app import app, db
-from app.forms import LoginForm, FlaskForm
+from app.forms import LoginForm, FlaskForm, BuscaForms
 from flask_login import current_user, login_user, login_required, logout_user
-from app.models import User
+from app.models import User, Busca
 from app.forms import RegistrationForm
+from app.results import Results
 import requests 
 import json
 
@@ -59,9 +60,30 @@ def user(username):
     ]    
     return render_template('user.html', user=user, buscas=buscas)
 
-@app.route('/busca')
-@login_required
+@app.route('/busca', methods=['GET', 'POST'])
 def busca():
-    return render_template('busca.html')
+    session = requests.Session()
+    url = "http://hp-api.herokuapp.com/api/characters"
+    r = requests.get(url)
+    data = json.loads(r.text)
+    
+    search = BuscaForms(request.form)
+    if request.method == 'POST':
+        return search_results(search)
+    return render_template('busca.html', form=search)
 
+@app.route('/resultados')
+def search_results(search):
+    results = []
+    search_string = search.data['search']
+    if search.data['search'] == '':
+        qry = db_session.query(Busca)
+        results = qry.all()
+    if not results:
+        flash('Nenhum resultado encontrado!')
+        return redirect('/busca')
+    else:
+        table = Results(results)
+        table.border = True
+        return render_template('resultados.html', table=table)
 

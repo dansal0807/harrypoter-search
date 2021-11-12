@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, Form, SelectField
 from wtforms.validators import DataRequired, ValidationError
 from app.models import User, Busca
 
@@ -18,3 +18,11 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(username=username.data).first()
         if user is not None:
             raise ValidationError('Por favor, utilize um nome de usuário diferente.')
+
+class BuscaForms(Form):
+    choices = [('Name', 'Nome'),
+               ('Gender', 'Sexo'),
+               ('House', 'Casa de Hogwarts'),
+               ('Actor', 'Ator')]
+    select = SelectField('Escolha o personagem    ', choices=choices)
+    search = StringField('')
