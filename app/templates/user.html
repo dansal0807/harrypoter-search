@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>usuário: {{ user.username }}</h1>
+    <hr>
+    {% for busca in buscas %}
+    <p>
+    buscas feitas por {{ busca.usuário.username }}: <b>{{ busca.busca}}</b>
+    </p>
+    {% endfor %}
+{% endblock %}
