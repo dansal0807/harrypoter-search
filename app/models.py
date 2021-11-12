@@ -6,13 +6,6 @@ import json
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
-session = requests.Session()
-url = "http://hp-api.herokuapp.com/api/characters"
-r = requests.get(url)
-data = json.loads(r.text)
-
-fields = [x for x in data[0]]
-
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
