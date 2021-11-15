@@ -5,7 +5,7 @@ This project is developed in Flask and aim to give a basic user interface in whi
 
 ![first_page](https://github.com/dansal0807/harrypoter-search/blob/main/imagens/first_page.jpeg)
 
-The application requires a login. It's embedded with a data base of users with SQLlite. If the user doesn't have a login, it must create one in "Registre":
+The application requires a login. It's embedded with a data base of users with SQLlite. If the user doesn't have a login, it must create one in "Registre-se":
 
 ![register_page](https://github.com/dansal0807/harrypoter-search/blob/main/imagens/register_page.jpeg)
 
