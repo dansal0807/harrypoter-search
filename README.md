@@ -1,7 +1,7 @@
 # harrypoter-search
 This project is developed in Flask and aim to give a basic user interface in which it can search for the information on Harry Potter main characters. 
 
-# This is the first page in which the user arrives:
+# Here we can see the User's choices in the project:
 
 ![first_page](https://github.com/dansal0807/harrypoter-search/blob/main/imagens/first_page.jpeg)
 
@@ -13,7 +13,7 @@ After the user is registered, it has some options on the nav bar on the upside p
 
 ![logon_page](https://github.com/dansal0807/harrypoter-search/blob/main/imagens/logon_page.jpeg)
 
-Besides its page, it has a field for logout and a search choice:
+Besides its own page - in which shows the results it has been doing -, the user can find the fields for logout and for searching:
 
 ![search_page](https://github.com/dansal0807/harrypoter-search/blob/main/imagens/search_page.jpeg)
 
