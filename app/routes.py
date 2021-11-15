@@ -84,9 +84,23 @@ def search_results(data):
         if personagem['name'] == needle:
             results.append(personagem)
             break
+        elif personagem['gender'] == needle:
+            results.append(personagem)
+        elif personagem['house'] == needle:
+            results.append(personagem)
+        elif personagem['actor'] == needle:
+            results.append(personagem)
+            break
         else:
             continue
-    return render_template('resultados.html', results=results)
+
+    if not results:
+        flash("Nenhum resultado encontrado.")
+        return redirect("/busca")
+    else:
+        table = Results(results)
+        table.border = True
+        return render_template('resultados.html', table=table)
 
 
 

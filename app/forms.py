@@ -23,6 +23,9 @@ class BuscaForms(Form):
     choices = [('name', 'Nome'),
                ('gender', 'Sexo'),
                ('house', 'Casa de Hogwarts'),
-               ('actor', 'Ator')]
+               ('actor', 'Ator'),
+               ('alternate_names', 'Nomes Alternativos'),
+               ('dateOfBirth', 'Data de Nascimento')
+               ]
     haystack = SelectField('Escolha o personagem    ', choices=choices)
     needle = StringField('')

@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-    {{ results }}
+    <div class="table">
+        {{ table }}
+    </div>
  
 <form method="get" action="file.doc">
     <button type="submit">Download CSV </button>
