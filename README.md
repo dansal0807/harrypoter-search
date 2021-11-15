@@ -17,6 +17,6 @@ Besides its own page - in which shows the results it has been doing -, the user 
 
 ![search_page](https://github.com/dansal0807/harrypoter-search/blob/main/imagens/search_page.jpeg)
 
-After the results are made, it can find its results on a table in a another page:
+After the search, the user can find the results on a table on another page:
 
 ![results_page](https://github.com/dansal0807/harrypoter-search/blob/main/imagens/results_page.jpeg)
