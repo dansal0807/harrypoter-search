@@ -1,7 +1,7 @@
 # harrypoter-search
 This project is developed in Flask and aim to give a basic user interface in which it can search for the information on Harry Potter main characters. 
 
-# Here we can see the User's choices in the project:
+# Here we can see the users' options:
 
 ![first_page](https://github.com/dansal0807/harrypoter-search/blob/main/imagens/first_page.jpeg)
 
